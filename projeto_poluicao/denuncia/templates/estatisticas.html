@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block title %}Estatísticas de Impacto{% endblock %}
+
+{% block content %}
+    <h1>Estatísticas de Impacto Ambiental</h1>
+    <p>Acompanhe os números que demonstram o impacto da sua participação na plataforma Respira+.</p>
+
+    <div style="display: flex; justify-content: space-around; margin-top: 30px; text-align: center;">
+        <div style="padding: 20px; border: 1px solid var(--cor-principal); border-radius: 8px;">
+            <h2 style="margin: 0; border: none; color: var(--cor-alerta);">{{ total_denuncias }}</h2>
+            <p style="margin: 5px 0 0 0; font-size: 1.1em;">Total de Denúncias Recebidas</p>
+        </div>
+        <div style="padding: 20px; border: 1px solid var(--cor-principal); border-radius: 8px;">
+            <h2 style="margin: 0; border: none; color: var(--cor-principal);">{{ denuncias_resolvidas }}</h2>
+            <p style="margin: 5px 0 0 0; font-size: 1.1em;">Denúncias Marcadas como Resolvidas</p>
+        </div>
+    </div>
+    
+    <h2 style="margin-top: 40px;">Distribuição por Tipo de Poluição (Dados de Exemplo)</h2>
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>Tipo</th>
+                <th>Incidentes</th>
+                <th>Percentual</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Poluição do Ar</td>
+                <td>250</td>
+                <td>40%</td>
+            </tr>
+            <tr>
+                <td>Poluição da Água</td>
+                <td>180</td>
+                <td>29%</td>
+            </tr>
+            <tr>
+                <td>Poluição do Solo</td>
+                <td>100</td>
+                <td>16%</td>
+            </tr>
+            <tr>
+                <td>Poluição Sonora</td>
+                <td>50</td>
+                <td>8%</td>
+            </tr>
+            <tr>
+                <td>Outros</td>
+                <td>45</td>
+                <td>7%</td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <p style="font-size: 0.8em; color: #777; margin-top: 20px;">*Estatísticas atualizadas em tempo real com base no seu banco de dados.</p>
+{% endblock content %}

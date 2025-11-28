@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Enviar Denúncia{% endblock %}
+
+{% block content %}
+    <div style="max-width: 600px; margin: 0 auto; text-align: center;">
+        <h1 style="border: none;">🚨 Denuncie a Poluição</h1>
+        <p style="margin-bottom: 30px;">Sua denúncia é anônima e vital para a saúde do nosso planeta.</p>
+        
+        <form method="POST" action="{% url 'sucesso_denuncia' %}" enctype="multipart/form-data">
+            {% csrf_token %} 
+            
+            {% for field in form %}
+                <div class="form-group">
+                    <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                    
+                    {{ field.as_widget }}
+                    
+                    {% for error in field.errors %}
+                        <p class="messages error-text">{{ error }}</p>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+
+            <button type="submit" class="btn-submit">Enviar Denúncia</button>
+            
+            {% if form.non_field_errors %}
+                <div class="messages error-text">
+                    {{ form.non_field_errors }}
+                </div>
+            {% endif %}
+            
+        </form>
+    </div>
+{% endblock content %}

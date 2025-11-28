@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}Denúncia Enviada!{% endblock %}
+
+{% block content %}
+    <div style="max-width: 600px; margin: 0 auto;">
+        <div class="success-message">
+            <h1 style="color: var(--cor-principal); margin-top: 0; border: none;">✅ Denúncia Recebida com Sucesso!</h1>
+            <p>Agradecemos imensamente sua contribuição. Sua denúncia será analisada por nossa equipe e encaminhada às autoridades competentes.</p>
+            <p>Se desejar acompanhar o impacto das denúncias, visite nossa página de <a href="{% url 'denuncias_lista' %}" style="font-weight: bold;">Transparência</a>.</p>
+            <div style="margin-top: 20px;">
+                <a href="{% url 'enviar_denuncia' %}" class="btn-submit" style="background-color: var(--cor-borda); padding: 10px 20px; display: inline-block;">Fazer Nova Denúncia</a>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

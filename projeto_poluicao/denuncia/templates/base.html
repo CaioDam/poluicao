@@ -1,0 +1,248 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Respira+ | {% block title %}{% endblock %}</title>
+
+    <style>
+        :root {
+            
+            --cor-fundo: #F7F7F7; 
+            --cor-texto: #333; 
+            --cor-principal: #3d937c; 
+            --cor-alerta: #C0392B; 
+            --cor-borda: #DDD;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--cor-fundo);
+            color: var(--cor-texto);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .header {
+            background-color: #FFF;
+            border-bottom: 1px solid var(--cor-borda);
+            padding: 10px 0;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo a {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: var(--cor-principal);
+            text-decoration: none;
+        }
+
+        .nav a {
+            margin-left: 15px;
+            color: var(--cor-texto);
+            text-decoration: none;
+            font-size: 0.95em;
+            transition: color 0.3s;
+        }
+
+        .nav a:hover {
+            color: var(--cor-principal);
+        }
+
+        .btn-denuncia {
+            background-color: var(--cor-alerta);
+            color: white !important;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+
+        .content {
+            flex-grow: 1;
+            max-width: 1000px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            width: 90%;
+        }
+
+        .footer {
+            background-color: #333;
+            color: var(--cor-fundo);
+            padding: 15px 20px;
+            text-align: center;
+            font-size: 0.8em;
+            margin-top: auto;
+        }
+
+        .footer a {
+            color: var(--cor-principal);
+            text-decoration: none;
+            margin: 0 5px;
+        }
+
+        h1, h2 {
+            color: #2c3e50;
+            border-bottom: 1px solid var(--cor-borda);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .input-minimal, 
+        textarea, 
+        select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid var(--cor-borda);
+            border-radius: 4px;
+            box-sizing: border-box; 
+            font-size: 1em;
+            transition: border-color 0.3s;
+        }
+
+        .input-minimal:focus, 
+        textarea:focus, 
+        select:focus {
+            border-color: var(--cor-principal);
+            outline: none;
+        }
+        
+        
+        .btn-submit {
+            background-color: var(--cor-alerta);
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .btn-submit:hover {
+            background-color: #A93226; 
+        }
+        
+        .messages {
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+        }
+        .messages.error-text {
+            color: var(--cor-alerta);
+            background-color: #fcebeb;
+            border: 1px solid var(--cor-alerta);
+        }
+        .messages.info {
+            color: #2c3e50;
+            background-color: #ecf0f1;
+            border: 1px solid #bdc3c7;
+        }
+        
+        .content a {
+            color: var(--cor-principal);
+            text-decoration: none;
+        }
+        .content a:hover {
+            text-decoration: underline;
+        }
+        
+        .success-message {
+            color: var(--cor-principal);
+            background-color: #e6f7ee;
+            border: 1px solid var(--cor-principal);
+            padding: 20px;
+            border-radius: 6px;
+            text-align: center;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        .data-table th, .data-table td {
+            border: 1px solid var(--cor-borda);
+            padding: 10px;
+            text-align: left;
+        }
+        .data-table th {
+            background-color: #EEE;
+            color: var(--cor-texto);
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="header">
+        <div class="nav-container">
+            
+            <div class="logo"><a href="{% url 'enviar_denuncia' %}">Respira+</a></div>
+            <nav class="nav">
+                <a href="{% url 'quem_somos' %}">Quem Somos</a>
+                <a href="{% url 'denuncias_lista' %}">Denúncias Resolvidas</a>
+                <a href="{% url 'guia_denuncia' %}">Guia</a>
+                <a href="{% url 'estatisticas' %}">Estatísticas</a>
+                <a href="{% url 'faq' %}">FAQ</a>
+                <a href="{% url 'contato' %}">Contato</a>
+                
+                {% if user.is_authenticated %}
+                    <a href="{% url 'enviar_denuncia' %}" class="btn-denuncia">Denunciar</a>
+                    {% if user.is_staff %}
+                        <a href="{% url 'admin_home' %}">Painel Admin</a>
+                    {% endif %}
+                    <a href="{% url 'logout' %}">Sair</a>
+                {% else %}
+                    <a href="{% url 'login' %}" class="btn-denuncia">Entrar / Denunciar</a>
+                {% endif %}
+            </nav>
+        </div>
+    </div>
+
+    
+    <main class="content">
+        {% block content %}
+        
+        {% endblock content %}
+    </main>
+
+    
+    <footer class="footer">
+        © 2025 Respira+. Todos os direitos reservados.
+        <div>
+            <a href="{% url 'guia_denuncia' %}">Guia de Denúncia</a> |
+            <a href="{% url 'estatisticas' %}">Estatísticas</a> |
+            {% if not user.is_authenticated %}
+                <a href="{% url 'login' %}">Login</a>
+            {% else %}
+                <a href="{% url 'logout' %}">Sair</a>
+            {% endif %}
+        </div>
+    </footer>
+</body>
+</html>

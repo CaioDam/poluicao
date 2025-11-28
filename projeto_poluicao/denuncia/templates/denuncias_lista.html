@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %} Denúncias Resolvidas{% endblock %}
+
+{% block content %}
+    <h1>Denúncias Resolvidas</h1>
+    <p>Aqui você encontra todas as denúncias que foram enviadas e marcadas como resolvidas pela nossa equipe, mostrando nosso compromisso com a ação e o resultado. (Dados de exemplo).</p>
+
+    {% if denuncias %}
+        <ul style="list-style-type: none; padding: 0;">
+            {% for denuncia in denuncias %}
+                <li style="border: 1px solid var(--cor-borda); padding: 15px; margin-bottom: 10px; border-radius: 4px;">
+                    <h3 style="margin: 0; color: var(--cor-principal);">{{ denuncia.tipo }} - Denúncia #{{ denuncia.id }}</h3>
+                    <p style="margin: 5px 0 0 0;">**Descrição:** {{ denuncia.descricao|truncatechars:150 }}</p>
+                    <p style="font-size: 0.85em; color: #777;">Data: {{ denuncia.data_criacao|date:"d/m/Y" }} | Status: <strong style="color: green;">Resolvida</strong></p>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p class="messages info">Nenhuma denúncia resolvida para mostrar no momento. Verifique se o banco de dados tem denúncias com `resolvida=True`.</p>
+    {% endif %}
+{% endblock content %}

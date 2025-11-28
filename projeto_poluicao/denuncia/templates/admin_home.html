@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block title %}Painel de Controle{% endblock %}
+13
+{% block content %}
+    
+    <div class="painel-container">
+        <h1>Painel de Controle (Admin)</h1>
+        <p>Bem-vindo, {{ user.username }}. Este é o resumo das atividades de denúncia.</p>
+
+        <div style="display: flex; gap: 20px; justify-content: space-around; margin-top: 30px; text-align: center;">
+            
+            <div style="flex: 1; padding: 20px; border: 1px solid #ddd; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); background-color: #F8F9FA;">
+                <h2 style="margin: 0; border: none; color: #2c3e50; font-size: 2.5em;">{{ total_denuncias|default:0 }}</h2>
+                <p style="margin: 5px 0 0 0; font-size: 1.1em; color: #555;">Total Geral de Denúncias</p>
+            </div>
+            
+            <div style="flex: 1; padding: 20px; border: 1px solid var(--cor-alerta); border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); background-color: #FEF3F2;">
+                <h2 style="margin: 0; border: none; color: var(--cor-alerta); font-size: 2.5em;">{{ denuncias_pendentes|default:0 }}</h2>
+                <p style="margin: 5px 0 0 0; font-size: 1.1em; color: #555;">Denúncias Pendentes de Análise</p>
+            </div>
+            
+            <div style="flex: 1; padding: 20px; border: 1px solid var(--cor-principal); border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); background-color: #EBF5FB;">
+                <h2 style="margin: 0; border: none; color: var(--cor-principal); font-size: 2.5em;">0</h2> 
+                <p style="margin: 5px 0 0 0; font-size: 1.1em; color: #555;">Denúncias Resolvidas (Exemplo)</p>
+            </div>
+        </div>
+        
+        <h2 style="margin-top: 40px; border-bottom: 2px solid #eee; padding-bottom: 10px;">Ações Rápidas</h2>
+        <ul style="list-style: none; padding: 0;">
+            
+            <li style="margin-bottom: 15px;">
+                <a href="{% url 'denuncias_lista' %}" class="btn-acao" style="background-color: var(--cor-principal); display: inline-block; text-decoration: none; padding: 10px 20px; border-radius: 5px; color: white; transition: background-color 0.3s;">
+                    Visualizar Todas as Denúncias
+                </a>
+            </li>
+            
+            <li style="margin-bottom: 15px;">
+                <a href="/admin/" class="btn-acao" style="background-color: #5D6D7E; display: inline-block; text-decoration: none; padding: 10px 20px; border-radius: 5px; color: white; transition: background-color 0.3s;">
+                    Django Administrativo
+                </a>
+            </li>
+            
+            <li style="margin-bottom: 15px;">
+                <a href="{% url 'logout' %}" class="btn-acao" style="background-color: #777; display: inline-block; text-decoration: none; padding: 10px 20px; border-radius: 5px; color: white; transition: background-color 0.3s;">
+                    Sair / Logout
+                </a>
+            </li>
+        </ul>
+        
+        
+        
+
+    </div>
+{% endblock content %}

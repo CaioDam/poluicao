@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}Perguntas Frequentes (FAQ){% endblock %}
+
+{% block content %}
+    <h1>Perguntas Frequentes (FAQ)</h1>
+    
+    <div class="faq-item">
+        <h2>A denúncia é realmente anônima?</h2>
+        <p>Sim. Nossa plataforma é projetada para garantir total anonimato. Não coletamos nenhum dado pessoal identificável do denunciante. Apenas a localização e os detalhes do incidente são registrados.</p>
+    </div>
+
+    <div class="faq-item">
+        <h2>O que acontece após eu enviar uma denúncia?</h2>
+        <p>A denúncia passa por uma triagem da nossa equipe. Em seguida, é compilada e enviada (de forma agregada) aos órgãos de fiscalização ambiental municipais ou estaduais, como a CETESB ou secretarias de meio ambiente, dependendo da jurisdição e do tipo de poluição.</p>
+    </div>
+    
+    <div class="faq-item">
+        <h2>Como posso saber o status da minha denúncia?</h2>
+        <p>Devido ao anonimato, não fornecemos status individual. No entanto, você pode acompanhar a seção de <a href="{% url 'denuncias_lista' %}">Transparência</a>, onde publicamos a lista de denúncias que foram resolvidas e os impactos gerados na comunidade.</p>
+    </div>
+    
+    <div class="faq-item">
+        <h2>Posso anexar fotos ou vídeos?</h2>
+        <p>Sim. O formulário permite o upload de arquivos de imagem. Evidências visuais são cruciais e ajudam muito na análise e no encaminhamento da denúncia.</p>
+    </div>
+{% endblock content %}
